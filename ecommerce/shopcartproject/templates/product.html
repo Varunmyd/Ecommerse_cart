@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+
+{{product.description|truncatewords:155}}
+
+
+{% endblock %}
+{% block title %}
+{% if category %}
+{{product.name}} - NOUVA Store
+
+{% endif %}
+{% endblock %}
+{% block content %}
+<div>
+    <div>
+        <p><a href="{{product.category.get_url}}">{{product.category}}</a> | {{product.name}}</p>
+
+    </div>
+</div>
+<br>
+<div class="container">
+    <div class="row" style="color:#000;text-decoration:none;font-size:18px;">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+            <div style="min-width:18rem">
+                <img style="height:339px" src="{{product.image.url}}" alt="{{product.name}}">
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <div>
+                <h1 style=" letter-spacing : .02em;font-size:35px;text-transform : uppercase;padding-top:15px;padding-bottom:10px">
+                    {{product.name}}</h1>
+                <p>₹{{product.price}}</p>
+                <p class="my_tittle" style="letter-spacing : .02em;font-size : 16px;text-transform : uppercase;">Product
+                    Description</p>
+                <p style="text-justify;padding-right:20px;">{{product.description}}</p>
+                {% if product.stock <= 0 %}
+                <p class="text-justify"><b>Out of Stock</b></p>
+                {% else %}
+                <a class="btn btn-secondary" style="margin-bottom:10px;" href="{% url 'cart:add_cart' product.id %}">Add
+                    to Cart</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

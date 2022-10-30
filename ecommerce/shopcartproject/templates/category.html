@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+{% if category %}
+{{category.description|truncatewords:155}}
+{% else %}
+Welcome to NOUVA Store
+{% endif %}
+{% endblock %}
+{% block title %}
+{% if category %}
+{{category.name}} - NOUVA Store
+{% else %}
+See our Latest Collections - NOUVA Store
+{% endif %}
+{% endblock %}
+{% block content %}
+{% if category %}
+<div>
+    <div class="row my_row_class" style="padding-top : 15px;">
+        <div class="mx_auto">
+            <p><a style="font-size:20px;" href="{% url 'shopapp:allprodcat' %}">Our Product Collections</a></p>
+        </div>
+    </div>
+</div>
+{% endif %}
+<div class="mx_auto">
+    {% if category %}
+    <img style=" width: 1113px;height: 550px;margin-left: 20px;" src="{{category.image.url}}" alt="{{category.name}}">
+</div>
+<br>
+<div>
+    <h1 class="text-center my_title">{{category.name}}</h1>
+    <p class="text-justify">{{category.description}}</p>
+</div>
+{% else %}
+<div>
+    <img width="1117px" class="my_image my_image_padding" src="{% static 'img/banner.png' %}"
+         alt="Our products">
+
+</div>
+<br>
+<div>
+    <h1 class="text-center my_title">
+        Our products Collections
+    </h1>
+    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue risus eu fringilla
+        consectetur. Donec
+        aliquet sem in felis laoreet dictum. Aliquam erat volutpat. Donec pretium dui vel magna sollicitudin, quis
+        imperdiet lacus rhoncus. Aenean eu lobortis nibh. Phasellus rutrum purus vitae faucibus consectetur. Curabitur a
+        fringilla elit. Donec sodales fermentum ante at vestibulum. Phasellus sem eros, consequat sit amet justo eget,
+        malesuada tincidunt mi.</p>
+</div>
+{% endif %}
+
+<div class="container">
+    <div class="row mx_auto">
+        {% for product in products.object_list %}
+        <div class="my_bottom_margin col-9 col-sm-12 col-md-4 xol-lg-4" style="margin-bottom:10px;">
+            <div class="card text-center" style="min-width:18rem">
+                <a href="{{product.get_url}}"><img class="card-img-top" style="height:334px" src="{{product.image.url}}"
+                                                   alt="{{product.name}}"></a>
+                <div class="card-body">
+                    <h4>{{product.name}}</h4>
+                    <p>₹{{product.price}}</p>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+    <div>
+        {% if  products.paginator.num_pages > 1 %}
+
+
+      <hr>
+        <div class="text-center">
+            {% for pg in products.paginator.page_range %}
+            <a href="?page={{pg}}" style="margin-bottom:5px;" class="btn btn-primary btn-sm  {% if products.number == pg %} active {% endif %}">{{pg}}</a>
+            {% endfor %}
+
+
+        </div>
+          {% endif %}
+
+    </div>
+</div>
+{% endblock %}

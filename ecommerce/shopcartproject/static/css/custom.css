@@ -1,0 +1,70 @@
+.nav-item{
+    letter-spacing : .2em;
+    font-size : 14px;
+    text-transform : uppercase;
+
+}
+.dropdown-item{
+      letter-spacing : .2em;
+      font-size : 14px;
+      text-transform : uppercase;
+
+
+
+}
+.body{
+font-family: 'Raleway', sans-serif;
+}
+.my_footer {
+background-color:#f0f1fe;
+height:20px;
+}
+.my_footer p{
+font-size:14px;
+
+}
+.my_row_class{
+
+
+}
+.my_row_class .mx_auto{
+color:#000;
+font-size:12px;
+}
+.my_tittle{
+      letter-spacing : .2em;
+      font-size : 16px;
+      text-transform : uppercase;
+
+}
+
+.my_image{
+width:100%
+height:auto
+}
+
+.my_search_text{
+
+padding-top:20px;
+}
+.my_table{
+min-width:400px;
+font-size:14px;
+}
+.my_thead{
+font-weight:normal;
+letter-spacing:.2em;
+text_transform:uppercase;
+background-color:#f8f8fa!important;
+}
+.custom_a{
+text-decoration:none;
+}
+.custom_icon{
+text-decoration:none;
+color:#868e96 !important;
+
+}
+.my_button{
+margin-top:5px;
+}
